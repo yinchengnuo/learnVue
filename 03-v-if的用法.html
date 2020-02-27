@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>03-v-if的用法</title>
+</head>
+<body>
+
+	<div id="app">
+		我的下面<span v-if="!seen">没</span>有文字
+		<p v-if="seen">现在你看到我了！！！</p>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				seen: true
+			},
+		});
+
+	</script>
+</body>
+</html>

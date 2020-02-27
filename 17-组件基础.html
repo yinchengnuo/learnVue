@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>17-组件基础</title>
+	<style type="text/css">
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+
+		<ycn-temp @bigger="big" msg=" (从外面传进来的数据) ">
+			Something bad happened.
+		</ycn-temp>
+
+		<p :style="{fontSize: size + 'em'}">父组件的元素</p>
+
+		<ycn-input :value="father" @input="father = $event"></ycn-input>
+		{{father}}
+		<hr>
+
+
+		<ycn-sg-radio :checked="radio" @change="radio = $event"></ycn-sg-radio>
+		{{radio}}
+
+
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+
+		Vue.component('ycn-temp', {
+			template: `
+				<button @click="add">全局组件 add {{message}} {{msg}}</button>
+			`,
+			data () {
+				return {
+					message: 0
+				}
+			},
+			methods: {
+				add () {
+					this.message ++;
+					this.$emit('bigger', this.message, '全局子组件');
+				}
+			},
+			props: ['msg']
+		});
+
+		Vue.component('ycn-input', {
+			template: `
+				<input type="text" :value="value" @input="$emit('input', $event.target.value)">
+			`,
+			props: ['value']
+		});
+
+		Vue.component('ycn-sg-radio', {
+			template: `
+				<input type="radio" :checked="checked" @change="$emit('change', $event.target.checked, value)">
+			`,
+			model: {
+				prop: 'checked',
+				event: 'change'
+			},
+			props: {
+				checked: Boolean,
+				value: String
+			}
+		});
+
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				size: 1,
+				father: '',
+				radio: false,
+				dbradio: 'one'
+			},
+			methods: {
+				big: function (message, msg) {
+					console.log(message, msg)
+					this.size += 1;
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

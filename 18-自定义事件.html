@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>18-组件注册/title>
+	<style type="text/css">
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+
+		<ycn-input></ycn-input>
+			
+
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+
+		Vue.component('ycn-input', {
+			template: `
+				<input placeholder="请输入"></input>
+			`,
+		});
+
+		new Vue({
+			el: '#app',
+
+		});
+
+	</script>
+</body>
+</html>

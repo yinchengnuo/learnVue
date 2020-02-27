@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>09-模板语法</title>
+	<style type="text/css">
+		.size {
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+
+	<div :class="date"  @mouseenter="enter" @mouseleave="leave" @keydown.enter="callback" id="app">
+		{{message}}
+		<p v-html="html"></p>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				message: '你好，尹成诺',
+				html: '<p >我是一个p...标签</p>',
+				date: 'size'
+			},
+			methods: {
+				callback: function () {
+					this.message = '回车按下'
+				},
+				enter: function (e) {
+					e.target.style.color = 'red'
+					e.target.focus();
+					e.target.tabIndex = 0;
+					e.target.style.outline = 'none'
+				},
+				leave: function (e) {
+					e.target.style.color = '#000'
+					e.target.blur();
+					e.target.tabIndex = 9999;
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

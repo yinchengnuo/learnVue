@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>14-列表渲染</title>
+</head>
+<body>
+
+	<div id="app">
+		<ul>
+			<li v-for="list in plan">第{{list.num}}，{{list.something}}</li>
+		</ul>
+		<ul>
+			<li v-for="list in 10" v-if="list %2 == 0">{{list}}</li>
+		</ul>
+		<ul>
+			<li v-for="list in 10" v-if="list %2 == 0">{{list}}</li>
+		</ul>
+		<ul>
+			<li v-for="list in filter">{{list}}</li>
+		</ul>
+	</div>
+
+	<div id="todolist">
+		<form @submit.prevent="addlist">
+			<label for="text">添加待办事项</label>
+			<input type="text" id="text" v-model="value" placeholder="请输入待办事项">
+			<input type="submit" value="添加">
+		</form>
+		<ul>
+			<li is="ycn-lists" v-for="(item, index) in todolists" :key="item.id" :newlists="item.todo" @remove="removelist(index)"></li>
+		</ul>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				plan: [
+					{num: 1, something: '学JavaScript'},
+					{num: 2, something: '学Vue'},
+					{num: 3, something: '克隆富聊APP'}
+				],
+				message: '已经添加的',
+				numbers: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+			},
+			computed: {
+				filter: function () {
+					return this.numbers.filter(function (e) {
+						return e % 2 == 1;
+					});
+				}
+			}
+		});
+
+
+		vm.plan.push({num: 4, something: '大牛'});
+		vm.plan[0] = {num: 0, something: '混吃等死'};
+	</script>
+
+	<script type="text/javascript">
+		Vue.component('ycn-lists', {
+			template: `
+				<li>
+					<span>{{newlists}}</span>
+					<button @click="$emit('remove')">删除事项</button>
+				</li>
+			`,
+			props: ['newlists']
+		});
+		const todovm = new Vue({
+			el: '#todolist',
+			data: {
+				value: '',
+				todolists: [
+					{
+						id: 1,
+						todo: '起床'
+					},
+					{
+						id: 2,
+						todo: '洗脸'
+					},
+					{
+						id: 3,
+						todo: '吃饭'
+					}
+				],
+				nexttodoid: 4
+			},
+			methods: {
+				addlist: function () {
+					if (this.value) {
+						this.todolists.push({
+							id: this.nexttodoid ++,
+							todo: this.value
+						});
+						this.value = '';
+					} else {
+						alert('请添加事项！！！');
+					}
+				},
+				removelist: function (index) {
+					this.todolists.splice(index, 1);
+					this.nexttodoid --;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

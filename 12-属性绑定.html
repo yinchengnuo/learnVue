@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>12-属性绑定</title>
+	<style type="text/css">
+		.red {
+			color: red;
+			cursor: pointer;
+		}
+		.bgcolor {
+			background: #ccc;
+			cursor: pointer;
+		}
+		.size {
+			font-size: 30px;
+		}
+		.blod {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app" :class="{red : isRed, bgcolor: isBgcolor}" @click.once="callback">
+		{{message}}
+		<ycn-new class="red bgcolor"></ycn-new>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		Vue.component('ycn-new', {
+			template: '<p class="size blod">组件</p>'
+		});
+
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				message: '你好，尹成诺',
+				isRed: true,
+				isBgcolor: false
+			},
+			methods: {
+				callback: function () {
+					const that = this;
+					setInterval(function () {
+						that.isRed = !that.isRed;
+						that.isBgcolor = !that.isBgcolor;
+					}, 1000);
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

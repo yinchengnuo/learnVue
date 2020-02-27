@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>15-事件处理</title>
+	<style type="text/css">
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+
+		<button style="height: 1500px; width: 100%; border: 1px solid black" @click.middle="add(1, $event)" v-cloak>add{{message}}</button>
+		<a href="#" @click.prevent>点我点我点我点我点我点我</a>
+
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				message: 9
+			},
+			methods: {
+				add: function (num, e) {
+					this.message ++;
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

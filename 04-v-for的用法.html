@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>04-v-for的用法</title>
+</head>
+<body>
+
+	<div id="app">
+		<ul>
+			<li v-for="list in plan">第{{list.num}}，{{list.something}}</li>
+		</ul>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				plan: [
+					{num: 1, something: '学JavaScript'},
+					{num: 2, something: '学Vue'},
+					{num: 3, something: '克隆富聊APP'}
+				]
+			},
+		});
+
+	</script>
+</body>
+</html>

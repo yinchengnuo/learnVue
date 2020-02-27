@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>13-条件渲染</title>
+</head>
+<body>
+
+	<div id="app">
+
+		<p class="one" @click="add" v-if="num < 1000">{{num}}</p>
+		<p class="two" v-else>{{num}}</p>
+		<p v-show="num == 2000">2000时显示</p>
+
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				num: 0,
+				timer: null
+			},
+			methods: {
+				add: function () {
+					const that = this;
+					that.timer = setInterval(function () {
+						that.num ++;
+						if (that.num >= 2000) {
+							clearInterval(that.timer);
+						}
+					}, 10);
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>05-v-on的用法</title>
+	<style type="text/css">
+		#app {
+			-webkit-user-select:none;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+		<p v-on:click="reverse">{{message}}</p>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				message: '点击逆转文字'
+			},
+			methods: {
+				reverse: function() {
+					this.message = this.message.split('').reverse().join('');
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

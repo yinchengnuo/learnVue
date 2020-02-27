@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>16-表单输入绑定</title>
+	<style type="text/css">
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="app">
+
+		<input v-model="input" type="" name="" value="123">
+		<span v-cloak>{{input}}</span>
+		<hr>
+		<textarea v-model="textarea"></textarea>
+		<span v-cloak>{{textarea}}</span>
+		<hr>
+		<select v-model="selected">
+			<option disabled value="">请选择</option>
+			<option>北京</option>
+			<option>上海</option>
+			<option>深圳</option>
+		</select>
+		<span v-cloak>{{selected}}</span>
+		<hr>
+		<input type="checkbox" name="" id="checkbox" v-model="checked">
+		<label for="checkbox">{{checked}}</label>
+
+
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				input: '',
+				textarea: '',
+				option: '',
+				checked: false,
+				selected: ''
+			},
+			methods: {
+				
+			}
+		});
+
+	</script>
+</body>
+</html>

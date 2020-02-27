@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>07-vue全局组件的使用</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<div id="app">
+		<ol>
+			<ycn-list v-for="item in list" v-bind:recevice="item"></ycn-list>
+		</ol>
+	</div>
+	<div id="ant">
+		<ol>
+			<ycn-list v-for="item in list" v-bind:recevice="item"></ycn-list>
+		</ol>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		Vue.component('ycn-list', {
+			props: ['recevice'],
+			template: '<li>{{recevice.something}}</li>'
+		});
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				list: [
+					{num: '1', something: '学JavaScript'},
+					{num: '2', something: '学Vue'},
+					{num: '3', something: '做个牛逼的项目'}
+				]
+			}
+		});
+		const an = new Vue({
+			el: '#ant',
+			data: {
+				list: [
+					{num: '1', something: '再学JavaScript'},
+					{num: '2', something: '再学Vue'},
+					{num: '3', something: '再做个牛逼的项目'}
+				]
+			}
+		});
+	</script>
+</body>
+</html>

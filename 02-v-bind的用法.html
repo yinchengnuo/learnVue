@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>02-v-bind的用法</title>
+</head>
+<body>
+
+	<div v-bind:title="title" id="app">
+		{{message}}
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				title: '页面加载于：' + new Date().toLocaleString(),
+				message: '实例文字'
+			},
+		});
+
+	</script>
+</body>
+</html>

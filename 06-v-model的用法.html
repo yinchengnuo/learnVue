@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>06-v-model的用法</title>
+</head>
+<body>
+
+	<div id="app">
+		<input v-model="message" type="text" name="text">
+		<p>{{message}}</p>
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type="text/javascript">
+		const vm = new Vue({
+			el: '#app',
+			data: {
+				message: '点击逆转文字'
+			},
+			methods: {
+				reverse: function() {
+					this.message = this.message.split('').reverse().join('');
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>
